@@ -1,13 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
 import { Provider } from 'react-redux'
-import { createStore, applyMiddle, combineReduceers, compose } from 'redux'
+import { createStore, applyMiddleware, combineReduceers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import reducer from '~/reducers'
 
-import createLogger from 'redux-logger'
+const loggerMiddlerware = createLogger({ predicate: (getState, action) => __DEV__ });
 
-export default class App extends React.Component {
+function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddlerware,
+    ),
+  );
+  return createStore(reducer, initialState, enhancer);
+}
+
+const store = configureStore({});
+
+class SmartMov extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -17,6 +30,12 @@ export default class App extends React.Component {
   }
 }
 
+const App = () => (
+  <Provider store={store}>
+    <SmartMov />
+  </Provider>
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -25,3 +44,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App
