@@ -1,33 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '~/actions'
+import Home from '~/containers/Home'
 
 class AppContainer extends Component {
-  addMov() {
-    this.props.addMov();
-  }
-
   render () {
     return (
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-        <Text>
-          I am AppContainer!
-        </Text>
-        <Text>
-          Activity Count: { this.props.activityCount }
-        </Text>
-        <TouchableHighlight onPress={ () => { this.addMov() } }>
-          <Text>
-            Add Activity
-          </Text>
-        </TouchableHighlight>
-      </View>
+      <Home { ...this.props } />
     )
   }
 }
@@ -44,10 +24,7 @@ function mapDispatchToProps(dispatch) {
 // and we "return" the part of the state that we want to use in props
 export default connect(
   (state) => {
-    return {
-      activityCount: state.activityCount,
-      // activityCount: state.activityCount,
-    }
+    return {}
   },
   mapDispatchToProps
 )(AppContainer)
