@@ -1,3 +1,4 @@
+// each function name is a key in the state object
 // this is where we TRANSFORM the state of MOVS
 
 import createReducer from '~/lib/createReducer'

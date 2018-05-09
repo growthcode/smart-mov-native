@@ -40,9 +40,11 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps( state, { getMovs, email, authToken } ) {
   return {
-    getMovs: state.recievedMovs
+    authToken,
+    email,
+    getMovs,
   }
 }
 

@@ -1,6 +1,5 @@
 import * as types from '~/actions/types'
 import Api from '~/lib/api'
-import { AsyncStorage } from 'react-native'
 
 export function fetchAuthToken(email = 'admin@gmail.com', password = 'password') {
   return (dispatch, state) => {
@@ -13,14 +12,19 @@ export function fetchAuthToken(email = 'admin@gmail.com', password = 'password')
         console.log(resp)
         console.warn(resp)
       } else {
-        AsyncStorage.setItem('smartMovAuth', resp.auth_token).then(()=>{
-          AsyncStorage.getItem('smartMovAuth', (err, auth_token)=>{
-            debugger
-          })
-        })
+        console.log('Success Fetch Auth', resp)
+        dispatch(setAuthToken(resp))
       }
     }).catch( (ex) => {
       console.warn(ex)
     })
+  }
+}
+
+export function setAuthToken( { auth_token, user } ) {
+  return {
+    type: types.SET_AUTH_TOKEN,
+    auth_token,
+    user,
   }
 }
