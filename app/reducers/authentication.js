@@ -6,18 +6,21 @@ import * as types from '~/actions/types'
 
 export const authToken = createReducer({}, {
   [types.SET_AUTH_TOKEN](state, action) {
-    return action.auth_token
-  }
+    return action.authToken
+  },
+  [types.REMOVE_AUTH_TOKEN](state, action) {
+    return null
+  },
 })
 
 export const email = createReducer({}, {
   [types.SET_AUTH_TOKEN](state, action) {
     return action.user.email
-  }
+  },
 })
 
 export const user_id = createReducer({}, {
   [types.SET_AUTH_TOKEN](state, action) {
     return action.user.id
-  }
+  },
 })

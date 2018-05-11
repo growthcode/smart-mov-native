@@ -21,17 +21,25 @@ export function fetchAuthToken(email = 'admin@gmail.com', password = 'password')
   }
 }
 
-export function setAuthToken( { auth_token, user } ) {
+export function removeAuthToken( {authToken, user} ) {
+  return {
+    type: types.REMOVE_AUTH_TOKEN,
+    authToken,
+    user,
+  }
+}
+
+export function setAuthToken( { authToken, user } ) {
   return {
     type: types.SET_AUTH_TOKEN,
-    auth_token,
+    authToken,
     user,
   }
 }
 
 export function fetchTestRoute(email = 'admin@gmail.com', password = 'password') {
   return (dispatch, state) => {
-    return Api.get(`/test`, { AUTHORIZATION: `Bearer ${state().authToken}` }).then( resp => {
+    return Api.get(`/test`, { AUTHORIZATION: `Bearer ${ state().authToken }` }).then( resp => {
       if (!!resp.errors) {
         console.log(resp)
         console.warn(resp)
