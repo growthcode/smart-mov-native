@@ -15,7 +15,12 @@ import { connect } from 'react-redux'
 
 class Home extends Component {
   fetchAuthTokenPressed() {
+    console.log(this.props)
     this.props.fetchAuthToken()
+  }
+
+  fetchTestRoutePressed() {
+    this.props.fetchTestRoute()
   }
 
   render () {
@@ -31,7 +36,15 @@ class Home extends Component {
         <View>
           <TouchableHighlight onPress={ () => this.fetchAuthTokenPressed() } >
             <Text>
-              Fetch Movs
+              Set Auth Token
+            </Text>
+          </TouchableHighlight>
+        </View>
+
+        <View>
+          <TouchableHighlight onPress={ () => this.fetchTestRoutePressed() } >
+            <Text>
+              Test Route
             </Text>
           </TouchableHighlight>
         </View>

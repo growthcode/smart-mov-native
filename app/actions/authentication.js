@@ -28,3 +28,18 @@ export function setAuthToken( { auth_token, user } ) {
     user,
   }
 }
+
+export function fetchTestRoute(email = 'admin@gmail.com', password = 'password') {
+  return (dispatch, state) => {
+    return Api.get(`/test`, { AUTHORIZATION: `Bearer ${state().authToken}` }).then( resp => {
+      if (!!resp.errors) {
+        console.log(resp)
+        console.warn(resp)
+      } else {
+        console.log('Success Fetch Auth', resp)
+      }
+    }).catch( (ex) => {
+      console.warn(ex)
+    })
+  }
+}
