@@ -1,5 +1,5 @@
 import * as types from '~/actions/types'
-import Api from '~/lib/api'
+import Api from '~/services/api'
 
 export function fetchMovs() {
   return (dispatch, getState) => {

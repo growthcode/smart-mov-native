@@ -53,7 +53,7 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps( state, { getMovs, email, authToken } ) {
+function mapStateToProps( { getMovs, email, authToken } ) {
   return {
     authToken,
     email,

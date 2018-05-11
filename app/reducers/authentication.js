@@ -1,7 +1,7 @@
 // this is where we TRANSFORM the state of AUTH
 // each function name is a key in the state object
 
-import createReducer from '~/lib/createReducer'
+import createReducer from '~/services/createReducer'
 import * as types from '~/actions/types'
 
 export const authToken = createReducer({}, {

@@ -3,12 +3,20 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '~/actions'
 import Home from '~/containers/Home'
+import Login from '~/containers/Login'
 
 class AppContainer extends Component {
+  isLoggedIn() {
+    return (this.props.authToken || '').length > 0
+  }
+
   render () {
-    return (
-      <Home { ...this.props } />
-    )
+    if (this.isLoggedIn()) {
+      // return ( <Login { ...this.props } /> )
+      return ( <Home { ...this.props } /> )
+    } else {
+      return ( <Home { ...this.props } /> )
+    }
   }
 }
 
@@ -23,7 +31,7 @@ function mapDispatchToProps(dispatch) {
 // the state argument is the "global state"
 // and we "return" the part of the state that we want to use in props
 export default connect(
-  (state) => {
+  (state, { authToken } ) => {
     return {}
   },
   mapDispatchToProps
