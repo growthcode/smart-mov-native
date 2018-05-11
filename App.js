@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReduceers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import reducer from '~/reducers'
+import reducers from '~/reducers'
 import AppContainer from '~/containers/AppContainer'
 
 const loggerMiddlerware = createLogger({ predicate: (getState, action) => __DEV__ });
@@ -14,7 +14,7 @@ function configureStore(initialState) {
       loggerMiddlerware,
     ),
   );
-  return createStore(reducer, initialState, enhancer);
+  return createStore(reducers, initialState, enhancer);
 }
 const store = configureStore({});
 
