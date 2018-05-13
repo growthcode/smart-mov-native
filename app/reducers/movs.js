@@ -13,7 +13,7 @@ export const recievedMovs = createReducer({}, {
 // new objects are being created... (immutableJS)
 // old objects are NOT being changed
 export const activityCount = createReducer(0, {
-  [types.ADD_MOV](state, action) {
-    return state + 1;
-  }
-});
+  [types.ADD_MOV] (state, action) {
+    return state + 1
+  },
+})

@@ -8,36 +8,36 @@ import {
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Button from '~/components/Button';
-import Label from '~/components/Label';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Button from '~/components/Button'
+import Label from '~/components/Label'
 // import Label from '~/components/Label';
 
-      // <View style={{
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-      // }}>
-        // <Text>
-          // Login
-        // </Text>
-      // </View>
+// <View style={{
+// flex: 1,
+// justifyContent: 'center',
+// alignItems: 'center',
+// }}>
+// <Text>
+// Login
+// </Text>
+// </View>
 
 class Login extends Component {
-  forgotLoginPressed() {
+  forgotLoginPressed () {
     console.log('props', this.props)
   }
 
-  submitFormPressed() {
+  submitFormPressed () {
     console.log('props', this.props)
     this.props.fetchAuthToken()
   }
 
-  cancelFormPressed() {
+  cancelFormPressed () {
     console.log('props', this.props)
   }
 
-  facebookLoginPressed() {
+  facebookLoginPressed () {
     console.log('props', this.props)
   }
 
@@ -45,43 +45,42 @@ class Login extends Component {
     const marginBottom = { marginBottom: 20 }
 
     return (
-      <ScrollView style={styles.scroll} >
+      <ScrollView style={ styles.scroll } >
         <View style={ styles.baseMarginBottom } >
-          <Button label="Forgot Login/Pass"
-                  styles={{ button: styles.alignRight, label: styles.label} }
-                  onPress={ () => this.forgotLoginPressed() } />
+          <Button label='Forgot Login/Pass'
+            styles={ { button: styles.alignRight, label: styles.label } }
+            onPress={ () => this.forgotLoginPressed() } />
         </View>
         <View style={ styles.baseMarginBottom } >
-          <Label text="Username or Email" />
-          <TextInput style={styles.textInput} />
+          <Label text='Username or Email' />
+          <TextInput style={ styles.textInput } />
         </View>
         <View style={ styles.baseMarginBottom }>
-          <Label text="Password" />
-          <TextInput secureTextEntry={true}
-                     style={styles.textInput} />
+          <Label text='Password' />
+          <TextInput secureTextEntry={ true }
+            style={ styles.textInput } />
         </View>
+        <View style={ styles.baseMarginBottom } >
+          <Button label='Sign In'
+            styles={ { button: styles.primaryButton, label: styles.buttonWhiteText } }
+            onPress={ () => this.submitFormPressed() } />
+        </View>
+        <View style={ styles.baseMarginBottom } >
+          <Button label='CANCEL'
+            styles={ { label: styles.buttonBlackText } }
+            onPress={ () => this.cancelFormPressed() } />
+        </View>
+        <View style={ styles.footer }>
           <View style={ styles.baseMarginBottom } >
-            <Button label="Sign In"
-                    styles={{button: styles.primaryButton, label: styles.buttonWhiteText}}
-                    onPress={ () => this.submitFormPressed() } />
-          </View>
-          <View style={ styles.baseMarginBottom } >
-            <Button label="CANCEL"
-                    styles={{label: styles.buttonBlackText}}
-                    onPress={ () => this.cancelFormPressed() } />
-          </View>
-        <View style={styles.footer}>
-          <View style={ styles.baseMarginBottom } >
-              <Button
-                styles={{button: styles.transparentButton}}
-                onPress={ () => this.facebookLoginPressed() }
-              >
-                <View style={styles.inline}>
-                  <Icon name="facebook-official" size={30} color="#3B5699" />
-                  <Text style={[styles.buttonBlueText, styles.buttonBigText]}>  Connect </Text>
-                  <Text style={styles.buttonBlueText}>with Facebook</Text>
-                </View>
-              </Button>
+            <Button
+              styles={ { button: styles.transparentButton } }
+              onPress={ () => this.facebookLoginPressed() }>
+              <View style={ styles.inline }>
+                <Icon name='facebook-official' size={ 30 } color='#3B5699' />
+                <Text style={ [styles.buttonBlueText, styles.buttonBigText] }>  Connect </Text>
+                <Text style={ styles.buttonBlueText }>with Facebook</Text>
+              </View>
+            </Button>
           </View>
         </View>
       </ScrollView>
@@ -92,55 +91,55 @@ class Login extends Component {
 const styles = StyleSheet.create({
   baseMarginBottom: { marginBottom: 20 },
   scroll: {
-      backgroundColor: '#E1D7D8',
-      padding: 30,
-      flexDirection: 'column'
+    backgroundColor: '#E1D7D8',
+    padding: 30,
+    flexDirection: 'column',
   },
   label: {
-      color: '#0d8898',
-      fontSize: 20
+    color: '#0d8898',
+    fontSize: 20,
   },
   alignRight: {
-      alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
   },
   textInput: {
-      height: 80,
-      fontSize: 30,
-      backgroundColor: '#FFF'
+    height: 80,
+    fontSize: 30,
+    backgroundColor: '#FFF',
   },
   transparentButton: {
-      marginTop: 30,
-      borderColor: '#3B5699',
-      borderWidth: 2
+    marginTop: 30,
+    borderColor: '#3B5699',
+    borderWidth: 2,
   },
   buttonBlueText: {
-      fontSize: 20,
-      color: '#3B5699'
+    fontSize: 20,
+    color: '#3B5699',
   },
   buttonBigText: {
-      fontSize: 20,
-      fontWeight: 'bold'
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   inline: {
-      flexDirection: 'row'
+    flexDirection: 'row',
   },
   buttonWhiteText: {
-      fontSize: 20,
-      color: '#FFF',
+    fontSize: 20,
+    color: '#FFF',
   },
   buttonBlackText: {
-      fontSize: 20,
-      color: '#595856'
+    fontSize: 20,
+    color: '#595856',
   },
   primaryButton: {
-      backgroundColor: '#34A853'
+    backgroundColor: '#34A853',
   },
   footer: {
-     marginTop: 100
-  }
-});
+    marginTop: 100,
+  },
+})
 
-function mapStateToProps( { authToken, email } ) {
+function mapStateToProps ({ authToken, email }) {
   return {
     authToken,
     email,

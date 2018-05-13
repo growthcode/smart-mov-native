@@ -6,15 +6,15 @@ import Home from '~/containers/Home'
 import Login from '~/containers/Login'
 
 class AppContainer extends Component {
-  isLoggedIn() {
+  isLoggedIn () {
     return (this.props.authToken || '').length > 0
   }
 
   render () {
     if (this.isLoggedIn()) {
-      return ( <Home { ...this.props } /> )
+      return (<Home { ...this.props } />)
     } else {
-      return ( <Login { ...this.props } /> )
+      return (<Login { ...this.props } />)
       // return ( <Home { ...this.props } /> )
     }
   }
@@ -22,7 +22,7 @@ class AppContainer extends Component {
 
 // For Actions...
 // mapping dispatch into this Container's Props
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return bindActionCreators(ActionCreators, dispatch)
 }
 
@@ -31,7 +31,7 @@ function mapDispatchToProps(dispatch) {
 // the state argument is the "global state"
 // and we "return" the part of the state that we want to use in props
 export default connect(
-  (state, { authToken } ) => {
+  (state, { authToken }) => {
     return {}
   },
   mapDispatchToProps

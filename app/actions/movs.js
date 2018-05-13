@@ -1,7 +1,7 @@
 import * as types from '~/actions/types'
 import Api from '~/services/api'
 
-export function fetchMovs() {
+export function fetchMovs () {
   return (dispatch, getState) => {
     // const params = [
     //   `email=admin@gmail.com`,
@@ -15,7 +15,7 @@ export function fetchMovs() {
   }
 }
 
-export function addMov() {
+export function addMov () {
   return {
     type: types.ADD_MOV,
   }

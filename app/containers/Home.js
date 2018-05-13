@@ -9,27 +9,27 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-  // fetchMovsPressed() {
-    // this.props.fetchMovs()
-          // <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
+// fetchMovsPressed() {
+// this.props.fetchMovs()
+// <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
 
 class Home extends Component {
-  fetchAuthTokenPressed() {
+  fetchAuthTokenPressed () {
     console.log(this.props)
     this.props.fetchAuthToken()
   }
 
-  fetchTestRoutePressed() {
+  fetchTestRoutePressed () {
     this.props.fetchTestRoute()
   }
 
   render () {
     return (
-      <View style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={ {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      } }>
         <Text>
           Home
         </Text>
@@ -53,7 +53,7 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps( { getMovs, email, authToken } ) {
+function mapStateToProps ({ getMovs, email, authToken }) {
   return {
     authToken,
     email,
@@ -62,4 +62,3 @@ function mapStateToProps( { getMovs, email, authToken } ) {
 }
 
 export default connect(mapStateToProps)(Home)
-
