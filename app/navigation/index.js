@@ -11,8 +11,20 @@ const PrimaryNav = StackNavigator({
 }, {
   headerMode: 'none',
   title: 'Main',
-  initialRouteName: 'loginStack',
-  // initialRouteName: 'drawerStack',
+  // initialRouteName: 'loginStack',
+  initialRouteName: 'drawerStack',
 })
 
-export default PrimaryNav
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '~/actions'
+
+// For Actions...
+// mapping dispatch into this Container's Props
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(ActionCreators, dispatch)
+}
+
+// export default PrimaryNav
+export default connect(mapDispatchToProps)(PrimaryNav)

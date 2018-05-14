@@ -11,11 +11,7 @@ class AppContainer extends Component {
   }
 
   render () {
-    // if (this.isLoggedIn()) {
-      return ( <Navigation /> )
-    // } else {
-      // return (<Login { ...this.props } />)
-    // }
+    return ( <Navigation /> )
   }
 }
 

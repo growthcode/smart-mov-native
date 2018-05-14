@@ -6,12 +6,12 @@ import AuthToken from '~/containers/AuthToken'
 // import ActivitiesContainer from '~/containers/activities'
 // import PollsContainer from '~/containers/polls'
 
-class HomeScreen extends Component {
+class RecordMov extends Component {
   static navigationOptions = {
     title: 'Record Mov',
   };
   render () {
-    console.log(this.props)
+    console.log("RecordMov", this.props)
     const { navigate } = this.props.navigation
     return (
       <View>
@@ -36,4 +36,4 @@ function mapStateToProps ({ authToken, email }) {
   }
 }
 
-export default connect(mapStateToProps)(HomeScreen)
+export default connect(mapStateToProps)(RecordMov)

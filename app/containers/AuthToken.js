@@ -7,13 +7,8 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native'
-import { connect } from 'react-redux'
 
-// fetchMovsPressed() {
-// this.props.fetchMovs()
-// <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
-
-class Home extends Component {
+class AuthToken extends Component {
   fetchAuthTokenPressed () {
     console.log(this.props)
     this.props.fetchAuthToken()
@@ -26,12 +21,12 @@ class Home extends Component {
   render () {
     return (
       <View style={ {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        // flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center',
       } }>
         <Text>
-          Home
+          AuthToken
         </Text>
         <View>
           <TouchableHighlight onPress={ () => this.fetchAuthTokenPressed() } >
@@ -61,4 +56,14 @@ function mapStateToProps ({ getMovs, email, authToken }) {
   }
 }
 
-export default connect(mapStateToProps)(Home)
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '~/actions'
+
+// For Actions...
+// mapping dispatch into this Container's Props
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(ActionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthToken)
