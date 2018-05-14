@@ -1,143 +1,137 @@
 import React, { Component } from 'react'
 import {
+  Dimensions,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableHighlight,
   View,
 } from 'react-native'
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Button from '~/components/Button'
-import Label from '~/components/Label'
-// import Label from '~/components/Label';
-
-// <View style={{
-// flex: 1,
-// justifyContent: 'center',
-// alignItems: 'center',
-// }}>
-// <Text>
-// Login
-// </Text>
-// </View>
+import {
+  FormLabel,
+  FormInput,
+  FormValidationMessage,
+  Text,
+  Input,
+  Button,
+} from 'react-native-elements'
+import { Font } from 'expo';
 
 class Login extends Component {
-  forgotLoginPressed () {
-    console.log('props', this.props)
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: 'admin@gmail.com',
+      email_valid: true,
+      password: 'password',
+      login_failed: false,
+      showLoading: false,
+    };
   }
 
-  submitFormPressed () {
-    console.log('props', this.props)
-    this.props.fetchAuthToken()
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return re.test(email);
   }
 
-  cancelFormPressed () {
-    console.log('props', this.props)
-  }
+  submitLoginCredentials() {
+    const { showLoading } = this.state;
 
-  facebookLoginPressed () {
-    console.log('props', this.props)
+    this.setState({
+      showLoading: !showLoading
+    });
   }
 
   render () {
-    const marginBottom = { marginBottom: 20 }
+    const { email, password, email_valid, showLoading } = this.state;
 
     return (
-      <ScrollView style={ styles.scroll } >
-        <View style={ styles.baseMarginBottom } >
-          <Button label='Forgot Login/Pass'
-            styles={ { button: styles.alignRight, label: styles.label } }
-            onPress={ () => this.forgotLoginPressed() } />
+      <View style={styles.container}>
+        <View style={styles.loginView}>
+          <Text style={styles.header}>TRAVEL</Text>
+          <FormInput
+            placeholderTextColor="white"
+            placeholder="Email"
+            inputStyle={styles.formInput}
+            onChangeText={ email => this.setState({email}) }
+            containerStyle={{marginVertical: 10}}
+            value={email}
+            returnKeyType="next"
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="email-address"
+            // ref={ input => this.emailInput = input }
+            // onSubmitEditing={() => {
+            //   this.setState({email_valid: this.validateEmail(email)});
+            //   this.passwordInput.focus();
+            // }}
+            // errorStyle={{textAlign: 'center', fontSize: 12}}
+            // errorMessage={email_valid ? null : "Please enter a valid email address"}
+          />
+          <FormInput
+            placeholderTextColor="white"
+            placeholder="Password"
+            inputStyle={styles.formInput}
+            onChangeText={ password => this.setState({password}) }
+            containerStyle={{marginVertical: 10}}
+            secureTextEntry={true}
+            value={password}
+            autoCapitalize="none"
+            autoCorrect={false}
+            returnKeyType="done"
+            // ref={ input => this.passwordInput = input}
+          />
+          <Button
+            title='LOG IN'
+            activeOpacity={1}
+            underlayColor="transparent"
+            // onPress={this.submitLoginCredentials.bind(this)}
+            loading={showLoading}
+            // disabled={ !email_valid && password.length < 8}
+            buttonStyle={styles.buttonStyle}
+          />
         </View>
-        <View style={ styles.baseMarginBottom } >
-          <Label text='Username or Email' />
-          <TextInput style={ styles.textInput } />
-        </View>
-        <View style={ styles.baseMarginBottom }>
-          <Label text='Password' />
-          <TextInput secureTextEntry={ true }
-            style={ styles.textInput } />
-        </View>
-        <View style={ styles.baseMarginBottom } >
-          <Button label='Sign In'
-            styles={ { button: styles.primaryButton, label: styles.buttonWhiteText } }
-            onPress={ () => this.submitFormPressed() } />
-        </View>
-        <View style={ styles.baseMarginBottom } >
-          <Button label='CANCEL'
-            styles={ { label: styles.buttonBlackText } }
-            onPress={ () => this.cancelFormPressed() } />
-        </View>
-        <View style={ styles.footer }>
-          <View style={ styles.baseMarginBottom } >
-            <Button
-              styles={ { button: styles.transparentButton } }
-              onPress={ () => this.facebookLoginPressed() }>
-              <View style={ styles.inline }>
-                <Icon name='facebook-official' size={ 30 } color='#3B5699' />
-                <Text style={ [styles.buttonBlueText, styles.buttonBigText] }>  Connect </Text>
-                <Text style={ styles.buttonBlueText }>with Facebook</Text>
-              </View>
-            </Button>
-          </View>
-        </View>
-      </ScrollView>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  baseMarginBottom: { marginBottom: 20 },
-  scroll: {
-    backgroundColor: '#E1D7D8',
-    padding: 30,
-    flexDirection: 'column',
+  container: {
+    width: SCREEN_WIDTH,
+    flex: 1,
+    backgroundColor: "#000",
+
   },
-  label: {
-    color: '#0d8898',
-    fontSize: 20,
-  },
-  alignRight: {
-    alignSelf: 'flex-end',
-  },
-  textInput: {
-    height: 80,
+  header: {
+    color: 'white',
     fontSize: 30,
-    backgroundColor: '#FFF',
+    fontFamily: 'bold',
+    textAlign: 'center',
   },
-  transparentButton: {
-    marginTop: 30,
-    borderColor: '#3B5699',
+  formInput: {
+    color: 'white',
+    marginLeft: 10,
+  },
+  loginView: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  buttonStyle: {
+    marginTop: 20,
+    backgroundColor: 'transparent',
     borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 30,
   },
-  buttonBlueText: {
-    fontSize: 20,
-    color: '#3B5699',
-  },
-  buttonBigText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  inline: {
-    flexDirection: 'row',
-  },
-  buttonWhiteText: {
-    fontSize: 20,
-    color: '#FFF',
-  },
-  buttonBlackText: {
-    fontSize: 20,
-    color: '#595856',
-  },
-  primaryButton: {
-    backgroundColor: '#34A853',
-  },
-  footer: {
-    marginTop: 100,
-  },
-})
+});
 
 function mapStateToProps ({ authToken, email }) {
   return {
