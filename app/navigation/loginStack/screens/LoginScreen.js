@@ -25,6 +25,7 @@ import { Font } from 'expo';
 class Login extends Component {
   constructor(props) {
     super(props);
+    console.log(props)
 
     this.state = {
       email: 'admin@gmail.com',
@@ -92,7 +93,9 @@ class Login extends Component {
             title='LOG IN'
             activeOpacity={1}
             underlayColor="transparent"
-            // onPress={this.submitLoginCredentials.bind(this)}
+            onPress={() => {
+              this.props.navigation.navigate('drawerStack')
+            }}
             loading={showLoading}
             // disabled={ !email_valid && password.length < 8}
             buttonStyle={styles.buttonStyle}

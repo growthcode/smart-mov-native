@@ -2,10 +2,10 @@ import React from 'react'
 import { DrawerNavigator } from 'react-navigation'
 import NavBarItem from '~/components/navBarItem'
 
-import RecordMovScreen from '~/navigation/drawer/screens/RecordMovScreen'
-import HistoryScreen from '~/navigation/drawer/screens/HistoryScreen'
-import SummaryScreen from '~/navigation/drawer/screens/SummaryScreen'
-import AccountScreen from '~/navigation/drawer/screens/AccountScreen'
+import RecordMovScreen from '~/navigation/drawerStack/drawer/screens/RecordMovScreen'
+import HistoryScreen from '~/navigation/drawerStack/drawer/screens/HistoryScreen'
+import SummaryScreen from '~/navigation/drawerStack/drawer/screens/SummaryScreen'
+import AccountScreen from '~/navigation/drawerStack/drawer/screens/AccountScreen'
 
 const Drawer = DrawerNavigator({
   RecordMovScreen: { screen: RecordMovScreen },

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import AuthToken from '~/containers/AuthToken'
 
 // import ActivitiesContainer from '~/containers/activities'
 // import PollsContainer from '~/containers/polls'
@@ -20,6 +21,9 @@ class HomeScreen extends Component {
         <Text>
           Say Whaaaaaaaaaaaaaaa!
         </Text>
+        <View>
+          <AuthToken />
+        </View>
       </View>
     )
   }

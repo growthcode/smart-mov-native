@@ -1,8 +1,8 @@
 import { StackNavigator } from 'react-navigation'
-import Login from '~/containers/Login'
+import LoginScreen from '~/navigation/loginStack/screens/LoginScreen'
 
 const LoginStack = StackNavigator({
-  loginScreen: { screen: Login },
+  loginScreen: { screen: LoginScreen },
   // signupScreen: { screen: SignupScreen },
   // forgottenPasswordScreen: { screen: ForgottenPasswordScreen, navigationOptions: { title: 'Forgot Password' } }
 }, {

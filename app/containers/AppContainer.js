@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '~/actions'
-import Home from '~/containers/Home'
 import Navigation from '~/navigation'
-import Login from '~/containers/Login'
 import { View } from 'react-native'
 
 class AppContainer extends Component {
@@ -14,11 +12,9 @@ class AppContainer extends Component {
 
   render () {
     // if (this.isLoggedIn()) {
-      // return (<Home { ...this.props } />)
       return ( <Navigation /> )
     // } else {
       // return (<Login { ...this.props } />)
-      // return ( <Home { ...this.props } /> )
     // }
   }
 }
