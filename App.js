@@ -49,15 +49,15 @@ class App extends React.Component {
         require('~/assets/images/icon.png'),
         require('~/assets/images/splash.png'),
       ]),
-      Font.loadAsync([
-        Ionicons.font, // This is the font that we are using for our tab bar
-        FontAwesome.font,
-        MaterialIcons.font,
-        {'georgia': require('~/assets/fonts/Georgia.ttf')},
-        {'regular': require('~/assets/fonts/Montserrat-Regular.ttf')},
-        {'light': require('~/assets/fonts/Montserrat-Light.ttf')},
-        {'bold': require('~/assets/fonts/Montserrat-Bold.ttf')},
-      ]),
+      Font.loadAsync({
+        ...Ionicons.font, // This is the font that we are using for our tab bar
+        ...FontAwesome.font,
+        ...MaterialIcons.font,
+        'georgia': require('~/assets/fonts/Georgia.ttf'),
+        'regular': require('~/assets/fonts/Montserrat-Regular.ttf'),
+        'light': require('~/assets/fonts/Montserrat-Light.ttf'),
+        'bold': require('~/assets/fonts/Montserrat-Bold.ttf'),
+      }),
     ]);
   };
 
