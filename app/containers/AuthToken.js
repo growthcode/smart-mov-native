@@ -9,13 +9,13 @@ import {
 } from 'react-native'
 
 class AuthToken extends Component {
-  fetchAuthTokenPressed () {
-    console.log(this.props)
-    this.props.fetchAuthToken()
+  fetchAuthPressed () {
+    this.props.fetchAndHandleAuthedUser()
   }
 
   fetchTestRoutePressed () {
-    this.props.fetchTestRoute()
+    console.log('test route turned off')
+    // this.props.fetchTestRoute()
   }
 
   render () {
@@ -29,7 +29,7 @@ class AuthToken extends Component {
           AuthToken
         </Text>
         <View>
-          <TouchableHighlight onPress={ () => this.fetchAuthTokenPressed() } >
+          <TouchableHighlight onPress={ () => this.fetchAuthPressed() } >
             <Text>
               Set Auth Token
             </Text>
@@ -50,9 +50,9 @@ class AuthToken extends Component {
 
 function mapStateToProps ({ getMovs, email, authToken }) {
   return {
-    authToken,
-    email,
-    getMovs,
+    // authToken,
+    // email,
+    // getMovs,
   }
 }
 
