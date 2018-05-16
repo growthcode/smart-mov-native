@@ -22,7 +22,11 @@ class RecordMov extends Component {
           Say Whaaaaaaaaaaaaaaa!
         </Text>
         <View>
+          {
+            //THIS IS FOR TESTING "AUTHTOKEN"
+          }
           <AuthToken />
+
         </View>
       </View>
     )

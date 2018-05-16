@@ -14,7 +14,7 @@ const initialState = {
   },
 }
 
-export default function user (state = initialState, action) {
+export default function currentUser (state = initialState, action) {
   switch (action.type) {
     case types.FETCHING_AUTH :
       return {

@@ -13,6 +13,10 @@ class AuthToken extends Component {
     this.props.fetchAndHandleAuthedUser()
   }
 
+  fetchMovsPressed () {
+    this.props.fetchingMovs()
+  }
+
   fetchTestRoutePressed () {
     console.log('test route turned off')
     // this.props.fetchTestRoute()
@@ -37,6 +41,14 @@ class AuthToken extends Component {
         </View>
 
         <View>
+          <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
+            <Text>
+              FetchMovs
+            </Text>
+          </TouchableHighlight>
+        </View>
+
+        <View>
           <TouchableHighlight onPress={ () => this.fetchTestRoutePressed() } >
             <Text>
               Test Route
@@ -48,12 +60,14 @@ class AuthToken extends Component {
   }
 }
 
-function mapStateToProps ({ getMovs, email, authToken }) {
+function mapStateToProps (state, { getMovs, email, authToken }) {
+  // debugger
   return {
-    // authToken,
-    // email,
-    // getMovs,
+    authToken,
+  //   email,
+  //   getMovs,
   }
+  // return state
 }
 
 import { connect } from 'react-redux'

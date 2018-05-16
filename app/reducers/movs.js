@@ -4,16 +4,52 @@
 import createReducer from '~/services/createReducer'
 import * as types from '~/actions/types'
 
-export const recievedMovs = createReducer({}, {
+// export const recievedMovs = createReducer({}, {})
 
-})
+// // HOW WE ARE TRANSFORMING ACTIVITY COUNT
+// // "state" is what we put in the first arg of createReducer
+// // new objects are being created... (immutableJS)
+// // old objects are NOT being changed
+// export const activityCount = createReducer(0, {
+//   [types.ADD_MOV] (state, action) {
+//     return state + 1
+//   },
+// })
 
-// HOW WE ARE TRANSFORMING ACTIVITY COUNT
-// "state" is what we put in the first arg of createReducer
-// new objects are being created... (immutableJS)
-// old objects are NOT being changed
-export const activityCount = createReducer(0, {
-  [types.ADD_MOV] (state, action) {
-    return state + 1
-  },
-})
+const initialState = {
+  // authToken: '',
+  // error: '',
+  // isAuthed: false,
+  // isFetching: false,
+  // authTokenExpiresAt: '',
+  // current_user: {
+  //   user_id: '',
+  //   email: '',
+  //   first: '',
+  //   last: '',
+  // },
+}
+
+export default function movs(state = initialState, action) {
+  switch (action.type) {
+    case types.FETCHING_MOVS :
+      return {
+        ...state,
+      }
+    case types.FETCHING_MOVS_SUCCESS :
+      return {
+        ...state,
+      }
+    case types.FETCHING_MOVS_FAILURE :
+      return {
+        ...state,
+        error: action.error,
+      }
+    case types.SET_MOVS :
+      return {
+        ...state,
+      }
+    default :
+      return state
+  }
+}

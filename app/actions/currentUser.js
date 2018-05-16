@@ -6,7 +6,7 @@ export function fetchingAuth () {
     type: types.FETCHING_AUTH,
   }
 }
-export function fetchingCurrentUserSuccess (data) {
+export function fetchingCurrentUserSuccess () {
   return {
     type: types.FETCHING_CURRENT_USER_SUCCESS,
   }
@@ -32,13 +32,11 @@ export function removeAuth () {
 
 
 function fetchAuthFromSmartMov (email, password) {
-  // return (dispatch, state) => {
-    const params = [
-      `email=${email}`,
-      `password=${password}`,
-    ].join('&')
-
-    return Api.post(`/auth_user?${params}`)
+  const params = [
+    `email=${email}`,
+    `password=${password}`,
+  ].join('&')
+  return Api.post(`/auth_user?${params}`)
 }
 
 export function fetchAndHandleAuthedUser() {

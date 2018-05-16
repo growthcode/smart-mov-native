@@ -5,12 +5,18 @@ import DrawerStack from '~/navigation/drawerStack'
 import LoginStack from '~/navigation/loginStack'
 // import Home from '~/containers/Home'
 
+// const PrimaryNav = createSwitchNavigator({
+//   loginStack: ScreenComponentOne,
+//   drawerStack: ScreenComponentTwo,
+//   routeNameThree: ScreenComponentThree,
+// });
+
 const PrimaryNav = StackNavigator({
   loginStack: { screen: LoginStack },
   drawerStack: { screen: DrawerStack },
 }, {
   headerMode: 'none',
-  title: 'Main',
+  // title: 'Main',
   // initialRouteName: 'loginStack',
   initialRouteName: 'drawerStack',
 })

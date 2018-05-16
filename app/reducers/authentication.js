@@ -5,7 +5,7 @@ import createReducer from '~/services/createReducer'
 import * as types from '~/actions/types'
 
 export const authToken = createReducer({}, {
-  [types.SET_AUTH_TOKEN] (state, action) {
+  [types.SET_AUTH] (state, action) {
     return action.authToken
   },
   [types.REMOVE_AUTH_TOKEN] (state, action) {
