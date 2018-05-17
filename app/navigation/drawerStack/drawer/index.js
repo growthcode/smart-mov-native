@@ -8,8 +8,8 @@ import SummaryScreen from '~/navigation/drawerStack/drawer/screens/SummaryScreen
 import AccountScreen from '~/navigation/drawerStack/drawer/screens/AccountScreen'
 
 const Drawer = DrawerNavigator({
-  RecordMovScreen: { screen: RecordMovScreen },
   HistoryScreen: { screen: HistoryScreen },
+  RecordMovScreen: { screen: RecordMovScreen },
   SummaryScreen: { screen: SummaryScreen },
   AccountScreen: { screen: AccountScreen },
 }, {

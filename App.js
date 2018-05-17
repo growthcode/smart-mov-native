@@ -18,7 +18,7 @@ function configureStore(initialState) {
   );
   return createStore(reducers, initialState, enhancer);
 }
-const store = configureStore({});
+export const store = configureStore({});
 
 class App extends React.Component {
   state = {

@@ -17,11 +17,8 @@ import * as types from '~/actions/types'
 // })
 
 const initialState = {
-  // authToken: '',
-  // error: '',
-  // isAuthed: false,
-  // isFetching: false,
-  // authTokenExpiresAt: '',
+  error: '',
+  isFetching: false,
   // current_user: {
   //   user_id: '',
   //   email: '',
@@ -35,19 +32,26 @@ export default function movs(state = initialState, action) {
     case types.FETCHING_MOVS :
       return {
         ...state,
+        isFetching: true,
+        error: '',
       }
     case types.FETCHING_MOVS_SUCCESS :
       return {
         ...state,
+        isFetching: false,
+        error: '',
+        // movs: action.
       }
     case types.FETCHING_MOVS_FAILURE :
       return {
         ...state,
+        isFetching: false,
         error: action.error,
       }
     case types.SET_MOVS :
       return {
         ...state,
+        events: action.events,
       }
     default :
       return state

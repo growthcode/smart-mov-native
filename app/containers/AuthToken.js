@@ -60,19 +60,20 @@ class AuthToken extends Component {
   }
 }
 
-function mapStateToProps (state, { getMovs, email, authToken }) {
-  // debugger
-  return {
-    authToken,
-  //   email,
-  //   getMovs,
-  }
-  // return state
-}
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '~/actions'
+
+function mapStateToProps (state, { getMovs, email, authToken }) {
+  // debugger
+  console.log(state)
+  // return {
+    // authToken,
+  //   email,
+  //   getMovs,
+  // }
+  return state
+}
 
 // For Actions...
 // mapping dispatch into this Container's Props

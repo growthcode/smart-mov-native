@@ -7,9 +7,25 @@ import Api from '~/services/api'
 // export const FETCHING_MOVS_FAILURE = 'FETCHING_MOVS_FAILURE'
 // export const SET_MOVS = 'SET_MOVS'
 
-export function fetchMovs () {
+export function fetchingMovs() {
   return {
     type: types.FETCHING_MOVS,
+  }
+}
+export function fetchingMovsSuccess() {
+  return {
+    type: types.FETCHING_MOVS_SUCCESS,
+  }
+}
+export function fetchingMovsFailure() {
+  return {
+    type: types.FETCHING_MOVS_FAILURE,
+  }
+}
+export function setMovs({ events }) {
+  return {
+    type: types.SET_MOVS,
+    events,
   }
 }
 
@@ -30,35 +46,54 @@ const query = `query {
                  }
                }`
 
-function authHeader(authToken) {
-  return
-}
-
 
 function fetchMovsQuery(authToken, query = query) {
-  // const params = [
-  //   `authToken=${authToken}`,
-  //   `query=${...query}`,
-  // ].join('&')
   const params = { query }
   const authHeader = { AUTHORIZATION: `Bearer ${authToken}` }
-  debugger
-  return Api.post(`/api/v1/graphql`, authHeader, params)
+  return Api.post(`/graphql`, authHeader, params)
 }
 
-
-// export function addMov () {
-//   return {
-//     type: types.ADD_MOV,
+// export function fetchingMovs() {
+//   return (dispatch, getState) => {
+//     console.log(query)
+//     debugger
+//     const authToken = getState().currentUser.authToken
+//     return fetchMovsQuery(authToken, query).then(resp => {
+//       debugger
+//     })
 //   }
 // }
 
-export function fetchingMovs() {
+
+
+// temp adding auto fetch Auth
+import { ActionCreators } from '~/actions'
+import fetchAndHandleAuthedUser from '~/actions/currentUser'
+export function fetchMovs() {
   return (dispatch, getState) => {
-    debugger
-    return fetchMovsQuery().then(resp => {
-      debugger
-    })
+    dispatch(fetchingMovs())
+    console.log(getState())
+    const authToken = getState().currentUser.authToken
+
+    if (authToken == '' || !!authToken) {
+      console.log(ActionCreators)
+      return dispatch(ActionCreators.fetchAndHandleAuthedUser()).then(() => {
+        return fetchMovsQuery(getState().currentUser.authToken, query).then(({ data }) => {
+          dispatch(fetchingMovsSuccess())
+          dispatch(setMovs(data))
+        }).catch((error) => {
+          debugger
+          dispatch(fetchingMovsFailure(error))
+        })
+      })
+    } else {
+      return fetchMovsQuery(authToken, query).then(({ data }) => {
+        dispatch(fetchingMovsSuccess())
+        dispatch(setMovs(data))
+      }).catch((error) => {
+        debugger
+        dispatch(fetchingMovsFailure(error))
+      })
+    }
   }
 }
-

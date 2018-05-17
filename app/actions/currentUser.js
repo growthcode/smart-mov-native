@@ -1,30 +1,30 @@
 import * as types from '~/actions/types'
 import Api from '~/services/api'
 
-export function fetchingAuth () {
+export function fetchingAuth() {
   return {
     type: types.FETCHING_AUTH,
   }
 }
-export function fetchingCurrentUserSuccess () {
+export function fetchingCurrentUserSuccess() {
   return {
     type: types.FETCHING_CURRENT_USER_SUCCESS,
   }
 }
-export function fetchingCurrentUserFailure (error) {
+export function fetchingCurrentUserFailure(error) {
   console.warn("action: fetchingCurrentUserFailure(error)", error)
   return {
     type: types.FETCHING_CURRENT_USER_FAILURE,
     error,
   }
 }
-export function setAuth (data) {
+export function setAuth(data) {
   return {
     type: types.SET_AUTH,
     ...data,
   }
 }
-export function removeAuth () {
+export function removeAuth() {
   return {
     type: types.REMOVE_AUTH,
   }

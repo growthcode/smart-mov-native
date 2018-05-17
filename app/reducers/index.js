@@ -20,6 +20,8 @@ import currentUser from '~/reducers/currentUser'
 // // // //=> and simply organize them into how you want your state.
 // // //=> Perhaps have a "State" object you build with constants
 // // // //=> which you get from these attribute named constants
+
+// Thought experiments... doesn't work this way:
 //===== Example using Both V1 =====
 // import * as authReducers from '~/reducers/authentication'
 // export default combineReducers(

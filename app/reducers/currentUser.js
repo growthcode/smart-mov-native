@@ -7,6 +7,7 @@ const initialState = {
   isFetching: false,
   authTokenExpiresAt: '',
   current_user: {
+    movs: [],
     user_id: '',
     email: '',
     first: '',
@@ -30,7 +31,7 @@ export default function currentUser (state = initialState, action) {
     case types.FETCHING_CURRENT_USER_FAILURE :
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         error: action.error,
       }
     case types.SET_AUTH :
