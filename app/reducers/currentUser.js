@@ -1,18 +1,21 @@
 import * as types from '~/actions/types'
+import movsReducer from '~/reducers/movs'
 
 const initialState = {
-  authToken: '',
-  error: '',
-  isAuthed: false,
-  isFetching: false,
-  authTokenExpiresAt: '',
-  current_user: {
-    movs: [],
+  currentUser: {
+    authToken: '',
+    error: '',
+    isAuthed: false,
+    isFetching: false,
+    authTokenExpiresAt: '',
     user_id: '',
     email: '',
-    first: '',
-    last: '',
-  },
+    movs: {
+      isFetching: false,
+      error: '',
+      events: [],
+    },
+  }
 }
 
 export default function currentUser (state = initialState, action) {
@@ -41,11 +44,8 @@ export default function currentUser (state = initialState, action) {
         isAuthed: true,
         isFetching: false,
         authTokenExpiresAt: action.authTokenExpiresAt,
-        current_user: {
-          user_id: action.user_id,
-          first: (action.first || 'first__test'),
-          last: (action.last || 'last__test'),
-        }
+        email: action.email,
+        user_id: action.user_id,
       }
     case types.REMOVE_AUTH :
       return {
@@ -54,8 +54,13 @@ export default function currentUser (state = initialState, action) {
         authToken: '',
         isFetching: false,
         authTokenExpiresAt: '',
-        current_user: {},
+        currentUser: {},
       }
+    case types.FETCHING_MOVS :
+    case types.FETCHING_MOVS_SUCCESS :
+    case types.FETCHING_MOVS_FAILURE :
+    case types.SET_MOVS :
+      return {...state, movs: movsReducer(state.currentUser.movs, action)}
     default :
       return state
   }

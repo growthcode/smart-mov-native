@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import AuthToken from '~/containers/AuthToken'
-          // <AuthToken />
-
 
 // import ActivitiesContainer from '~/containers/activities'
 // import PollsContainer from '~/containers/polls'

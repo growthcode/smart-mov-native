@@ -53,34 +53,23 @@ function fetchMovsQuery(authToken, query = query) {
   return Api.post(`/graphql`, authHeader, params)
 }
 
-// export function fetchingMovs() {
-//   return (dispatch, getState) => {
-//     console.log(query)
-//     debugger
-//     const authToken = getState().currentUser.authToken
-//     return fetchMovsQuery(authToken, query).then(resp => {
-//       debugger
-//     })
-//   }
-// }
-
-
-
 // temp adding auto fetch Auth
 import { ActionCreators } from '~/actions'
 import fetchAndHandleAuthedUser from '~/actions/currentUser'
 export function fetchMovs() {
   return (dispatch, getState) => {
     dispatch(fetchingMovs())
-    console.log(getState())
     const authToken = getState().currentUser.authToken
+    const movs = getState().currentUser.movs
 
-    if (authToken == '' || !!authToken) {
+    if (authToken == '' || !authToken) {
       console.log(ActionCreators)
       return dispatch(ActionCreators.fetchAndHandleAuthedUser()).then(() => {
         return fetchMovsQuery(getState().currentUser.authToken, query).then(({ data }) => {
           dispatch(fetchingMovsSuccess())
-          dispatch(setMovs(data))
+          dispatch(setMovs({
+            events: data,
+          }))
         }).catch((error) => {
           debugger
           dispatch(fetchingMovsFailure(error))

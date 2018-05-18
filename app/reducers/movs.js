@@ -17,14 +17,9 @@ import * as types from '~/actions/types'
 // })
 
 const initialState = {
-  error: '',
   isFetching: false,
-  // current_user: {
-  //   user_id: '',
-  //   email: '',
-  //   first: '',
-  //   last: '',
-  // },
+  error: '',
+  events: [],
 }
 
 export default function movs(state = initialState, action) {
@@ -40,7 +35,6 @@ export default function movs(state = initialState, action) {
         ...state,
         isFetching: false,
         error: '',
-        // movs: action.
       }
     case types.FETCHING_MOVS_FAILURE :
       return {
