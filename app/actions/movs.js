@@ -22,7 +22,7 @@ export function fetchingMovsFailure() {
     type: types.FETCHING_MOVS_FAILURE,
   }
 }
-export function setMovs({ events }) {
+export function setMovs(events) {
   return {
     type: types.SET_MOVS,
     events,
@@ -63,13 +63,10 @@ export function fetchMovs() {
     const movs = getState().currentUser.movs
 
     if (authToken == '' || !authToken) {
-      console.log(ActionCreators)
       return dispatch(ActionCreators.fetchAndHandleAuthedUser()).then(() => {
         return fetchMovsQuery(getState().currentUser.authToken, query).then(({ data }) => {
           dispatch(fetchingMovsSuccess())
-          dispatch(setMovs({
-            events: data,
-          }))
+          dispatch(setMovs(data.events))
         }).catch((error) => {
           debugger
           dispatch(fetchingMovsFailure(error))
