@@ -19,7 +19,7 @@ import * as types from '~/actions/types'
 const initialState = {
   isFetching: false,
   error: '',
-  events: [],
+  activities: [],
 }
 
 export default function movs(state = initialState, action) {
@@ -45,7 +45,7 @@ export default function movs(state = initialState, action) {
     case types.SET_MOVS :
       return {
         ...state,
-        events: action.events,
+        activities: action.activities,
       }
     default :
       return state

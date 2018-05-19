@@ -32,7 +32,6 @@ class HistoryScreen extends Component {
   }
 
   render () {
-    console.log('history', this.props.currentUser.movs)
     const currentUser = this.props.currentUser
     const { navigate } = this.props.navigation
     return (
@@ -42,13 +41,13 @@ class HistoryScreen extends Component {
                     <Text>
                       History
                     </Text>
-                    <View>
-                      <TouchableHighlight onPress={ () => this.fetchAuthPressed() } >
-                        <Text>
-                          Set Auth Token
-                        </Text>
-                      </TouchableHighlight>
-                    </View>
+                    {/*<View>
+                                          <TouchableHighlight onPress={ () => this.fetchAuthPressed() } >
+                                            <Text>
+                                              Set Auth Token
+                                            </Text>
+                                          </TouchableHighlight>
+                                        </View>*/}
                     <View>
                       <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
                         <Text>
@@ -59,18 +58,20 @@ class HistoryScreen extends Component {
                   </View>) : ''
         }
         <View style={styles.list}>
-          {this.props.currentUser.movs.events.map((l, i) => (
-            <ListItem
-              asdf={()=>{ console.log('loop', i, l) }}
-              key={l.id}
-              onPress={ log }
-              title={l.activityTitle}
-              subtitle={currentUser.email}
-              chevron
-              bottomDivider
-              textInputMultiline={true}
-              titleNumberOfLines={3}
-            />
+          {this.props.currentUser.movs.activities.map((l, i) => (
+            <View key={l.id}>
+              <ListItem
+                asdf={()=>{ console.log('loop', i, l) }}
+                key={l.id}
+                onPress={ log }
+                title={l.title}
+                subtitle={`$${l.avg_value} avg / ${l.num_movs} movs / $${l.value_saved} savings`}
+                chevron
+                bottomDivider
+                textInputMultiline={true}
+                titleNumberOfLines={8}
+              />
+            </View>
           ))}
         </View>
       </ScrollView>

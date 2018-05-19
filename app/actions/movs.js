@@ -22,29 +22,26 @@ export function fetchingMovsFailure() {
     type: types.FETCHING_MOVS_FAILURE,
   }
 }
-export function setMovs(events) {
+export function setMovs(activities) {
   return {
     type: types.SET_MOVS,
-    events,
+    activities,
   }
 }
 
 
-const query = `query {
-                 me {
-                   id
-                   email
-                   first
-                   last
-                 }
-                 events {
-                   aid
-                   id
-                   value
-                   activity_id
-                   activityTitle
-                 }
-               }`
+const query = `
+  query {
+    activities {
+      id
+      value
+      title
+      avg_value
+      num_movs
+      value_saved
+    }
+  }
+`
 
 
 function fetchMovsQuery(authToken, query = query) {
@@ -64,18 +61,24 @@ export function fetchMovs() {
 
     if (authToken == '' || !authToken) {
       return dispatch(ActionCreators.fetchAndHandleAuthedUser()).then(() => {
-        return fetchMovsQuery(getState().currentUser.authToken, query).then(({ data }) => {
+        // fetchMovsQuery(getState().currentUser.authToken, query).then((result) => {
+        //   console.log(result)
+        //   debugger
+        // })
+        return fetchMovsQuery(getState().currentUser.authToken, query).then((result) => {
+          console.log('result', result)
           dispatch(fetchingMovsSuccess())
-          dispatch(setMovs(data.events))
+          dispatch(setMovs(result.data.activities))
         }).catch((error) => {
           debugger
           dispatch(fetchingMovsFailure(error))
         })
       })
     } else {
-      return fetchMovsQuery(authToken, query).then(({ data }) => {
+      return fetchMovsQuery(authToken, query).then((result) => {
+        console.log(result)
         dispatch(fetchingMovsSuccess())
-        dispatch(setMovs(data))
+        dispatch(setMovs(result.data.activities))
       }).catch((error) => {
         debugger
         dispatch(fetchingMovsFailure(error))

@@ -12,7 +12,7 @@ const initialState = {
   movs: {
     isFetching: false,
     error: '',
-    events: [],
+    activities: [],
   },
 }
 
@@ -55,7 +55,7 @@ export default function currentUser (state = initialState, action) {
         movs: {
           isFetching: false,
           error: '',
-          events: [],
+          activities: [],
         },
       }
     case types.FETCHING_MOVS :
