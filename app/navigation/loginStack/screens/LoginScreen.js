@@ -10,7 +10,7 @@ import {
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-import { connect } from 'react-redux'
+import { store } from '~/../App'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {
   FormLabel,
@@ -36,6 +36,20 @@ class Login extends Component {
     };
   }
 
+  fetchMovsPressed() {
+    const that = this
+    const props = this.props
+    this.props.fetchMovs({
+      email: this.state.email,
+      password: this.state.password,
+    }).then(()=>{
+      if (store.getState().currentUser.authToken.length !== 0) {
+        that.props.navigation.navigate('drawerStack')
+      }
+    })
+  }
+
+
   validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -56,7 +70,12 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.loginView}>
-          <Text style={styles.header}>TRAVEL</Text>
+
+          {
+            this.props.currentUser.isFetching ? (
+              <Text style={styles.header}>Signing In...</Text>
+            ) : null
+          }
           <FormInput
             placeholderTextColor="white"
             placeholder="Email"
@@ -94,7 +113,8 @@ class Login extends Component {
             activeOpacity={1}
             underlayColor="transparent"
             onPress={() => {
-              this.props.navigation.navigate('drawerStack')
+              this.fetchMovsPressed()
+              // this.props.navigation.navigate('drawerStack')
             }}
             loading={showLoading}
             // disabled={ !email_valid && password.length < 8}
@@ -136,11 +156,22 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps ({ authToken, email }) {
-  return {
-    authToken,
-    email,
-  }
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '~/redux/actions'
+
+function mapStateToProps (state) {
+  // debugger
+  // return {
+    // authToken,
+  //   email,
+  //   getMovs,
+  // }
+  return state
 }
 
-export default connect(mapStateToProps)(Login)
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(ActionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

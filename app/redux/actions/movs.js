@@ -57,7 +57,6 @@ function fetchMovsQuery(authToken, query = query) {
 
 // temp adding auto fetch Auth
 import { ActionCreators } from '~/redux/actions'
-import fetchAndHandleAuthedUser from '~/redux/actions/currentUser'
 export function fetchMovs() {
   return (dispatch, getState) => {
     dispatch(fetchingMovs())
@@ -75,7 +74,6 @@ export function fetchMovs() {
           dispatch(fetchingMovsSuccess())
           dispatch(setMovs(result.data.activities))
         }).catch((error) => {
-          debugger
           dispatch(fetchingMovsFailure(error))
         })
       })

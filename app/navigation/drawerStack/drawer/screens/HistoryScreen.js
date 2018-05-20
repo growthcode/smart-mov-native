@@ -20,8 +20,6 @@ import {
   Avatar,
 } from 'react-native-elements';
 
-const log = () => console.log('this is an example method');
-
 
 class HistoryScreen extends Component {
   static navigationOptions = {
@@ -30,6 +28,7 @@ class HistoryScreen extends Component {
   fetchMovsPressed() {
     this.props.fetchMovs()
   }
+
   fetchAuthPressed() {
     this.props.fetchAndHandleAuthedUser()
   }

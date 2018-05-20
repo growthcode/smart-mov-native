@@ -39,11 +39,14 @@ function fetchAuthFromSmartMov (email, password) {
   return Api.post(`/auth_user?${params}`)
 }
 
-export function fetchAndHandleAuthedUser() {
+export function fetchAndHandleAuthedUser(options) {
+  options = options || {}
+  email = options.email || 'admin@gmail.com'
+  password = options.password || 'password'
+  navigation = options.navigation
   return function(dispatch) {
     dispatch(fetchingAuth())
-    // return fetchAuthFromSmartMov('admin@gmail.com', 'password').then(({user, credential}) => {
-    return fetchAuthFromSmartMov('admin@gmail.com', 'password').then(resp => {
+    return fetchAuthFromSmartMov(email, password).then(resp => {
       if (resp.errors) {
         dispatch(fetchingCurrentUserFailure(resp.errors))
       } else {
