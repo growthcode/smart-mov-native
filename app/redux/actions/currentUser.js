@@ -40,7 +40,7 @@ function fetchAuthFromSmartMov (email, password) {
 }
 
 export function fetchAndHandleAuthedUser() {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(fetchingAuth())
     // return fetchAuthFromSmartMov('admin@gmail.com', 'password').then(({user, credential}) => {
     return fetchAuthFromSmartMov('admin@gmail.com', 'password').then(resp => {
@@ -60,5 +60,11 @@ export function fetchAndHandleAuthedUser() {
     }).catch((error) => {
       dispatch(fetchingCurrentUserFailure(error))
     })
+  }
+}
+
+export function signOut() {
+  return function(dispatch) {
+    dispatch(removeAuth())
   }
 }

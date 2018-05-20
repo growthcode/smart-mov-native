@@ -47,7 +47,6 @@ export default function currentUser (state = initialState, action) {
       }
     case types.REMOVE_AUTH :
       return {
-        ...state,
         isAuthed: false,
         authToken: '',
         isFetching: false,

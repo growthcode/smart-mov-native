@@ -6,12 +6,14 @@ import RecordMovScreen from '~/navigation/drawerStack/drawer/screens/RecordMovSc
 import HistoryScreen from '~/navigation/drawerStack/drawer/screens/HistoryScreen'
 import SummaryScreen from '~/navigation/drawerStack/drawer/screens/SummaryScreen'
 import AccountScreen from '~/navigation/drawerStack/drawer/screens/AccountScreen'
+import SignOutScreen from '~/navigation/drawerStack/drawer/screens/SignOutScreen'
 
 const Drawer = DrawerNavigator({
   HistoryScreen: { screen: HistoryScreen },
   RecordMovScreen: { screen: RecordMovScreen },
   SummaryScreen: { screen: SummaryScreen },
   AccountScreen: { screen: AccountScreen },
+  SignOutScreen: { screen: SignOutScreen },
 }, {
   navigationOptions: ({ navigation }) => {
     const { state, navigate } = navigation

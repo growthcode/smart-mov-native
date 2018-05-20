@@ -24,6 +24,9 @@ const log = () => console.log('this is an example method');
 
 
 class HistoryScreen extends Component {
+  static navigationOptions = {
+    title: 'History',
+  };
   fetchMovsPressed() {
     this.props.fetchMovs()
   }
