@@ -17,8 +17,8 @@ const PrimaryNav = StackNavigator({
 }, {
   headerMode: 'none',
   // title: 'Main',
-  // initialRouteName: 'loginStack',
-  initialRouteName: 'drawerStack',
+  initialRouteName: 'loginStack',
+  // initialRouteName: 'drawerStack',
 })
 
 

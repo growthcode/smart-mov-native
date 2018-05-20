@@ -32,8 +32,8 @@ class Api {
   }
 
   static xhr (route, params, verb, headers) {
-    const host = 'http://localhost:3000/api/v1'
-    // const host = 'https://smartmov.herokuapp.com/api/v1'
+    // const host = 'http://localhost:3000/api/v1'
+    const host = 'https://smartmov.herokuapp.com/api/v1'
     const url = `${host}${route}`
     let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null)
     options.headers = Object.assign({}, Api.headers(), headers)

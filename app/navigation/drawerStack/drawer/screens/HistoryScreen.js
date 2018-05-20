@@ -37,42 +37,43 @@ class HistoryScreen extends Component {
     return (
       <ScrollView>
         {(this.props.currentUser.authToken.length === 0) ? (
-                  <View>
-                    <Text>
-                      History
-                    </Text>
-                    {/*<View>
-                                          <TouchableHighlight onPress={ () => this.fetchAuthPressed() } >
-                                            <Text>
-                                              Set Auth Token
-                                            </Text>
-                                          </TouchableHighlight>
-                                        </View>*/}
-                    <View>
-                      <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
-                        <Text>
-                          Fetch Movs
-                        </Text>
-                      </TouchableHighlight>
-                    </View>
-                  </View>) : ''
-        }
-        {this.props.currentUser.movs.activities.map((l, i) => (
-          <View key={l.id}>
-            <ListItem
-              asdf={()=>{ console.log('loop', i, l) }}
-              key={l.id}
-              onPress={ ()=>navigate('Activity') }
-              title={l.title}
-              subtitle={`$${l.avg_value} avg / ${l.num_movs} movs / $${l.value_saved} savings`}
-              chevron
-              bottomDivider
-              textInputMultiline={true}
-              titleNumberOfLines={8}
-              style={styles.list}
-            />
-          </View>
-        ))}
+          <View>
+            <Text>
+              History
+            </Text>
+            {/*<View>
+                                  <TouchableHighlight onPress={ () => this.fetchAuthPressed() } >
+                                    <Text>
+                                      Set Auth Token
+                                    </Text>
+                                  </TouchableHighlight>
+                                </View>*/}
+            <View>
+              <TouchableHighlight onPress={ () => this.fetchMovsPressed() } >
+                <Text>
+                  Fetch Movs
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>) : (
+        <Card containerStyle={{ marginTop: 15, marginBottom: 15 }}>
+          {this.props.currentUser.movs.activities.map((l, i) => (
+            <View key={l.id}>
+              <ListItem
+                key={l.id}
+                onPress={ () => navigate('Activity', { id: l.id }) }
+                title={l.title}
+                subtitle={`$${l.avg_value} avg / ${l.num_movs} movs / $${l.value_saved} tot`}
+                chevron
+                bottomDivider
+                textInputMultiline={true}
+                titleNumberOfLines={8}
+                style={styles.list}
+              />
+            </View>
+          ))}
+        </Card>
+        )}
       </ScrollView>
     )
   }

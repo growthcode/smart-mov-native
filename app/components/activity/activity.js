@@ -1,54 +1,60 @@
+import colors from '~/config/colors';
 import React, { PropTypes, Component } from 'react'
-import { View, Text } from 'react-native'
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  ListView,
+} from 'react-native';
 
-const data = {
-  "data": {
-    "activity": {
-      "id": "QWN0aXZpdHktMjY4ZDQ5OTZkZWQ2ZGM4OC04",
-      "value": 17.69,
-      "title": "Sometimes science is a lot more art, than science. A lot of people don't get that. (3)",
-      "num_movs": 5,
-      "value_saved": 41.97,
-      "avg_value": 8.39,
-      "events": [
-        {
-          "id": "RXZlbnQtMjY4ZDQ5OTZkZWQ2ZGM4OC0xMQ==",
-          "happened_at": "4/29/18 at 1:30am PDT",
-          "value": 6.77
-        },
-        {
-          "id": "RXZlbnQtMjY4ZDQ5OTZkZWQ2ZGM4OC0xNA==",
-          "happened_at": "4/27/18 at 9:34am PDT",
-          "value": 14.28
-        },
-        {
-          "id": "RXZlbnQtMjY4ZDQ5OTZkZWQ2ZGM4OC0xMw==",
-          "happened_at": "4/26/18 at 9:59pm PDT",
-          "value": 14.33
-        },
-        {
-          "id": "RXZlbnQtMjY4ZDQ5OTZkZWQ2ZGM4OC0xNQ==",
-          "happened_at": "4/24/18 at 7:59pm PDT",
-          "value": 1.7
-        },
-        {
-          "id": "RXZlbnQtMjY4ZDQ5OTZkZWQ2ZGM4OC0xMg==",
-          "happened_at": "4/24/18 at 7:35pm PDT",
-          "value": 4.89
-        }
-      ]
-    }
-  }
-}
+import {
+  Text,
+  Card,
+  ButtonGroup,
+  Tile,
+  Icon,
+  ListItem,
+  Avatar,
+} from 'react-native-elements';
 
 class activity extends Component {
+  constructor(props) {
+    super(props);
+    const activityId = this.props.navigation.getParam('id')
+    this.state = this.props.currentUser.movs.activities.find(
+      (obj) => { return obj.id === activityId }
+    )
+  }
+
   render () {
     return (
-      <View>
-        <Text>
-          activity
-        </Text>
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Card containerStyle={{ marginTop: 15 }} title={`${this.state.num_movs} movs / $${this.state.avg_value} avg / $${this.state.value_saved} tot`}>
+            <Text style={styles.fonts} h4>
+              {this.state.title}
+            </Text>
+          </Card>
+          <Card containerStyle={{ marginTop: 15, marginBottom: 15 }} title="Events">
+            {this.state.events.map((e, i) => (
+              <View key={e.id}>
+                <ListItem
+                  key={e.id}
+                  title={`$${e.value} savings`}
+                  subtitle={`${e.happened_at}`}
+                  hideChevron={true}
+                  bottomDivider
+                  textInputMultiline={true}
+                  titleNumberOfLines={3}
+                  style={styles.list}
+                />
+              </View>
+            ))}
+          </Card>
+        </View>
+      </ScrollView>
     )
   }
 }
@@ -70,4 +76,61 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return bindActionCreators(ActionCreators, dispatch)
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  list: {
+    marginTop: 20,
+    borderTopWidth: 1,
+    borderColor: colors.greyOutline,
+    backgroundColor: '#fff',
+  },
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 40,
+    backgroundColor: '#FD6B78',
+  },
+  heading: {
+    color: 'white',
+    marginTop: 10,
+    fontSize: 22,
+  },
+  fonts: {
+    marginBottom: 8,
+  },
+  user: {
+    flexDirection: 'row',
+    marginBottom: 6,
+  },
+  image: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
+  },
+  name: {
+    fontSize: 16,
+    marginTop: 5,
+  },
+  social: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  subtitleView: {
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingTop: 5,
+  },
+  ratingImage: {
+    height: 19.21,
+    width: 100,
+  },
+  ratingText: {
+    paddingLeft: 10,
+    color: 'grey',
+  },
+});
+
 export default connect(mapStateToProps, mapDispatchToProps)(activity)
