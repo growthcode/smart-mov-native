@@ -1,4 +1,4 @@
-import * as types from '~/actions/types'
+import * as types from '~/redux/actions/types'
 import Api from '~/services/api'
 
 
@@ -36,9 +36,14 @@ const query = `
       id
       value
       title
-      avg_value
       num_movs
       value_saved
+      avg_value
+      events {
+        id
+        value
+        happened_at
+      }
     }
   }
 `
@@ -51,8 +56,8 @@ function fetchMovsQuery(authToken, query = query) {
 }
 
 // temp adding auto fetch Auth
-import { ActionCreators } from '~/actions'
-import fetchAndHandleAuthedUser from '~/actions/currentUser'
+import { ActionCreators } from '~/redux/actions'
+import fetchAndHandleAuthedUser from '~/redux/actions/currentUser'
 export function fetchMovs() {
   return (dispatch, getState) => {
     dispatch(fetchingMovs())

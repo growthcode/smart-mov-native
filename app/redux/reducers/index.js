@@ -6,8 +6,8 @@
 // ==========================================================
 
 import { combineReducers } from 'redux'
-// import movs from '~/reducers/movs'
-import currentUser from '~/reducers/currentUser'
+// import movs from '~/redux/reducers/movs'
+import currentUser from '~/redux/reducers/currentUser'
 
 export default combineReducers({
   currentUser, // reducer function

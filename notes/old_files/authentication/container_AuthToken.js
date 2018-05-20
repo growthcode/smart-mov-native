@@ -62,7 +62,7 @@ class AuthToken extends Component {
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ActionCreators } from '~/actions'
+import { ActionCreators } from '~/redux/actions'
 
 function mapStateToProps (state, { getMovs, email, authToken }) {
   // debugger

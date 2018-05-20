@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReduceers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import reducers from '~/reducers'
+import reducers from '~/redux/reducers'
 import AppContainer from '~/containers/AppContainer'
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';

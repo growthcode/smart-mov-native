@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ActionCreators } from '~/actions'
+import { ActionCreators } from '~/redux/actions'
 import Navigation from '~/navigation'
 import { View } from 'react-native'
 

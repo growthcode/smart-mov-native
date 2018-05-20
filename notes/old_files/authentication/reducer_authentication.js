@@ -2,7 +2,7 @@
 // each function name is a key in the state object
 
 import createReducer from '~/services/createReducer'
-import * as types from '~/actions/types'
+import * as types from '~/redux/actions/types'
 
 export const authToken = createReducer({}, {
   [types.SET_AUTH] (state, action) {

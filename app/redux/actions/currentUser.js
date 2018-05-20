@@ -1,4 +1,4 @@
-import * as types from '~/actions/types'
+import * as types from '~/redux/actions/types'
 import Api from '~/services/api'
 
 export function fetchingAuth() {

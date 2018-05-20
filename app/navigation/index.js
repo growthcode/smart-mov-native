@@ -24,7 +24,7 @@ const PrimaryNav = StackNavigator({
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ActionCreators } from '~/actions'
+import { ActionCreators } from '~/redux/actions'
 
 // For Actions...
 // mapping dispatch into this Container's Props

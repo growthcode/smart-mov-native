@@ -57,32 +57,30 @@ class HistoryScreen extends Component {
                     </View>
                   </View>) : ''
         }
-        <View style={styles.list}>
-          {this.props.currentUser.movs.activities.map((l, i) => (
-            <View key={l.id}>
-              <ListItem
-                asdf={()=>{ console.log('loop', i, l) }}
-                key={l.id}
-                onPress={ log }
-                title={l.title}
-                subtitle={`$${l.avg_value} avg / ${l.num_movs} movs / $${l.value_saved} savings`}
-                chevron
-                bottomDivider
-                textInputMultiline={true}
-                titleNumberOfLines={8}
-              />
-            </View>
-          ))}
-        </View>
+        {this.props.currentUser.movs.activities.map((l, i) => (
+          <View key={l.id}>
+            <ListItem
+              asdf={()=>{ console.log('loop', i, l) }}
+              key={l.id}
+              onPress={ ()=>navigate('Activity') }
+              title={l.title}
+              subtitle={`$${l.avg_value} avg / ${l.num_movs} movs / $${l.value_saved} savings`}
+              chevron
+              bottomDivider
+              textInputMultiline={true}
+              titleNumberOfLines={8}
+              style={styles.list}
+            />
+          </View>
+        ))}
       </ScrollView>
     )
   }
 }
-              // {/*leftAvatar={{ rounded: true, source: { uri: l.avatar_url } }}*/}
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ActionCreators } from '~/actions'
+import { ActionCreators } from '~/redux/actions'
 
 function mapStateToProps (state) {
   // debugger

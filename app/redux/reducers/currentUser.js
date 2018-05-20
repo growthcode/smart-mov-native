@@ -1,5 +1,5 @@
-import * as types from '~/actions/types'
-import movsReducer from '~/reducers/movs'
+import * as types from '~/redux/actions/types'
+import movsReducer from '~/redux/reducers/movs'
 
 const initialState = {
   authToken: '',

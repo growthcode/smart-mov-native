@@ -2,7 +2,7 @@
 // this is where we TRANSFORM the state of MOVS
 
 import createReducer from '~/services/createReducer'
-import * as types from '~/actions/types'
+import * as types from '~/redux/actions/types'
 
 // export const recievedMovs = createReducer({}, {})
 
